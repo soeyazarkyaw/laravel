@@ -9,42 +9,61 @@
 </head>
 <body>
 <div class="container">
-<form action="{{route('create')}}" method="POST" >
+  <a href="{{ route('list') }}"><div class="btn btn-secondary mt-3 ">List Page</div></a>
+<form action="{{route('create')}}" class="mt-3" method="POST" >
   @csrf
   @if(Session::has('sucess'))
-  <div class="mt-4 alert alert-warning alert-dismissible fade show" role="alert">
-    {{Session::get('sucess')}}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+  <div class="mt-4 alert alert-success" role="alert">
+  {{Session::get('sucess')}}
+</div>
+
   @endif
   <div class="form-group mb-3">
     <label for="exampleFormControlInput1">Name</label>
-    <input type="text" name="name" class="form-control" id="exampleFormControlInput1" >
+    <input type="text" value="{{old('name')}}" name="name" class="form-control" id="exampleFormControlInput1" >
+    @if($errors->has('name'))
+    <p class="text-danger">{{$errors->first('name')}}</p>
+    @endif
   </div>
   <div class="form-group mb-3">
     <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    <input type="email" value="{{old('email')}}" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    @if($errors->has('email'))
+    <p class="text-danger">{{$errors->first('email')}}</p>
+    @endif
   </div>
   <div class="form-group mb-3">
     <label for="exampleFormControlSelect1">Gender</label>
     <select class="form-control" name="gender" id="exampleFormControlSelect1">
-      <option value="empty">Choose option</option>
+      <option value="">Choose option</option>
       <option value="0">Male</option>
       <option value="1">Female</option>
       <option value="2">Other</option>
     </select>
+    @if($errors->has('gender'))
+      <p class="text-danger">{{$errors->first('gender')}}</p>
+      @endif
   </div>
   <div class="form-group mb-3">
     <label for="exampleFormControlTextarea1">Address</label>
-    <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea class="form-control" value="{{old('address')}}" name="address" id="exampleFormControlTextarea1" rows="3"></textarea>
+    @if($errors->has('address'))
+    <p class="text-danger">{{$errors->first('address')}}</p>
+    @endif
   </div>
   <div class="form-group mb-3">
     <label for="exampleFormControlInput1">Phone Number</label>
-    <input type="number" name="phone" class="form-control"  >
+    <input type="number" value="{{old('phone')}}" name="phone" class="form-control"  >
+    @if($errors->has('phone'))
+    <p class="text-danger">{{$errors->first('phone')}}</p>
+    @endif
   </div>
   <div class="form-group mb-3">
     <label for="exampleFormControlInput1">Date Of Birth</label>
-    <input type="date" name="date" class="form-control"  >
+    <input type="date" value="{{old('date')}}" name="date" class="form-control"  >
+    @if($errors->has('date'))
+    <p class="text-danger">{{$errors->first('date')}}</p>
+    @endif
   </div>
   <div class="form-group mb-3">
     <input type="submit" class="btn bg-dark text-white"  value="Register" >

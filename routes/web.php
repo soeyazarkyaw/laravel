@@ -107,4 +107,11 @@ Route::post('calculateProcess','CalculatorController@calculate')->name("calculat
 Route::group(['prefix'=>'customer'],function(){
 Route::get('register','CustomerController@register')->name('register');
 Route::post('register','CustomerController@create')->name('create');
+Route::get('list','CustomerController@list')->name('list');
+Route::get('seemore/{id}','CustomerController@seemore')->name('seemore');
+Route::get('delete/{id}','CustomerController@delete')->name('delete');
+Route::get('edit/{id}','CustomerController@edit')->name('edit');
+Route::post('update/{id}','CustomerController@update')->name('update');
+Route::get('confirm','CustomerController@confirm')->name('confirm');
+Route::get('realupdate','CustomerController@realupdate')->name('realupdate');
 });
